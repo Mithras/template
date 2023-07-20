@@ -1,0 +1,26 @@
+services:
+  dev:
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    env_file: .env
+    environment:
+      - AZURE_TENANT_ID=
+      - AZURE_CLIENT_ID=
+      - ARM_TENANT_ID=
+      - ARM_CLIENT_ID=
+    volumes:
+      - ..:/workspace
+      - kube:/home/vscode/.kube
+    ports:
+      - 0.0.0.0:4444:4444
+    networks:
+      - template
+    # user: vscode
+volumes:
+  kube:
+    name: template_kube
+networks:
+  template:
+    name: template
