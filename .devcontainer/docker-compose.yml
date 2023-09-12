@@ -17,7 +17,7 @@ services:
       - 0.0.0.0:4444:4444
     networks:
       - template
-    # user: vscode
+    # user: vscode // <--- default container user
 volumes:
   kube:
     name: template_kube
