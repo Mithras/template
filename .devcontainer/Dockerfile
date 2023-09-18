@@ -7,10 +7,17 @@ RUN apt-get update \
   && apt-get install -y openssh-client nano jq sudo curl
 
 # Install k9s
-RUN curl -SLO https://github.com/derailed/k9s/releases/download/v0.27.4/k9s_Linux_amd64.tar.gz \
+ARG K9S_VERSION=v0.27.4
+RUN curl -SLO https://github.com/derailed/k9s/releases/download/$K9S_VERSION/k9s_Linux_amd64.tar.gz \
   && tar xzvf k9s_Linux_amd64.tar.gz \
-  && mv k9s /usr/local/bin/k9s \
-  && rm *
+  && mv k9s /usr/local/bin \
+  && rm -rf *
+
+# Install istioctl
+ARG ISTIO_VERSION=1.19.0
+RUN curl -L https://istio.io/downloadIstio | ISTIO_VERSION=$ISTIO_VERSION sh - \
+  && mv istio-$ISTIO_VERSION/bin/istioctl /usr/local/bin \
+  && rm -rf *
 
 # Add vscode user
 ARG USERNAME=vscode
