@@ -19,7 +19,8 @@
         "bierner.markdown-mermaid",
         "graphql.vscode-graphql",
         "ms-dotnettools.csharp",
-        "adrianwilczynski.user-secrets"
+        "adrianwilczynski.user-secrets",
+        "humao.rest-client"
       ]
     }
   },
